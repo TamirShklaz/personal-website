@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils"
-import { Github, Instagram, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import {
+  SiGithub,
+  SiInstagram,
+  SiLinkedin,
+} from "@icons-pack/react-simple-icons"
 
 type Props = { className?: string }
 
@@ -8,13 +12,13 @@ function Social({ className }: Props) {
   return (
     <div className={cn(className, "flex flex-row items-start space-x-2")}>
       <Button size={"icon"}>
-        <Github />
+        <SiGithub />
       </Button>
       <Button size={"icon"}>
-        <Linkedin />
+        <SiLinkedin />
       </Button>
       <Button size={"icon"}>
-        <Instagram />
+        <SiInstagram />
       </Button>
     </div>
   )

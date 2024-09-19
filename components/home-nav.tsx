@@ -7,7 +7,7 @@ type Props = {
 }
 
 function HomeNav({ className, activeSection, onSectionClick }: Props) {
-  const sections = ["about", "work", "projects", "press"]
+  const sections = ["about", "work", "press"]
 
   return (
     <ul className={"flex flex-col " + className}>

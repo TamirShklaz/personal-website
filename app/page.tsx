@@ -5,7 +5,6 @@ import About from "@/components/about"
 import WorkList from "@/components/work-list"
 import StickyHeader from "@/components/sticky-header"
 import { createRef, useEffect, useState } from "react"
-import ProjectList from "@/components/project-list"
 import PressList from "@/components/press-list"
 import HomeNav from "@/components/home-nav"
 import Social from "@/components/social"
@@ -63,10 +62,10 @@ export default function Home() {
         "mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0"
       }
     >
-      <div className={"lg:flex lg:justify-between lg:gap-4"}>
+      <div className={"lg:flex lg:justify-between lg:gap-8"}>
         <div
           className={
-            "justify-between lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:py-24"
+            "justify-between lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-4/12 lg:flex-col lg:py-24"
           }
         >
           <div>
@@ -81,7 +80,7 @@ export default function Home() {
 
           <Social />
         </div>
-        <div className={"relative pt-24 lg:w-1/2 lg:py-24"}>
+        <div className={"relative pt-24 lg:w-8/12 lg:py-24"}>
           <StickyHeader title={"About"} className={"-mt-24"} />
           <div ref={refs[0].ref} id={"about"} />
           <About className={"min-h-screen"} />
@@ -89,10 +88,6 @@ export default function Home() {
           <StickyHeader title={"Work"} />
           <div ref={refs[1].ref} id={"work"} />
           <WorkList className={"min-h-screen"} />
-
-          <StickyHeader title={"Projects"} />
-          <div ref={refs[2].ref} id={"projects"} />
-          <ProjectList className={"min-h-screen"} />
 
           <StickyHeader title={"Press"} />
           <div ref={refs[3].ref} id={"press"} />
