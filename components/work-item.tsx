@@ -26,11 +26,11 @@ function WorkItem({ className, details }: Props) {
     <div
       className={cn(
         className,
-        "group flex cursor-pointer flex-row gap-4 rounded-2xl p-6 transition-colors hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+        "group flex cursor-pointer flex-col gap-4 rounded-2xl p-2 transition-colors hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 lg:flex-row lg:p-6",
       )}
       onClick={handleCardClick}
     >
-      <div className={"min-w-[90px]"}>
+      <div className={"min-w-[90px] lg:text-muted-foreground"}>
         <span>{details.dates}</span>
       </div>
       <div className={"flex-1 space-y-3"}>

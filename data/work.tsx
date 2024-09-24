@@ -7,6 +7,7 @@ import {
   SiIonic,
   SiIos,
   SiNestjs,
+  SiNextdotjs,
   SiNodedotjs,
   SiPostgresql,
   SiReact,
@@ -16,6 +17,25 @@ import {
 } from "@icons-pack/react-simple-icons"
 
 export const WorkItems: WorkItemType[] = [
+  {
+    company: "Serene Technologies",
+    url: "https://www.strivemath.com",
+    dates: "2024 - Now",
+    role: "Founder",
+    activities: [
+      "Built websites, apps and back office systems for various startups.",
+      "Helped 10+ startups with product and fundraising strategy.",
+    ],
+    tags: [
+      { technology: "React", icon: <SiReact /> },
+      { technology: "NextJS", icon: <SiNextdotjs /> },
+      { technology: "NodeJS", icon: <SiNodedotjs /> },
+      { technology: "PostgreSQL", icon: <SiPostgresql /> },
+      { technology: "Webflow", icon: <SiWebflow /> },
+    ],
+    companyDescription:
+      "Engineering and consulting agency helping startups go 0-1",
+  },
   {
     company: "Strive Math (YC S21)",
     url: "https://www.strivemath.com",
@@ -48,7 +68,7 @@ export const WorkItems: WorkItemType[] = [
       "Online coding school teaching kids math through code. ",
   },
   {
-    dates: "2020",
+    dates: "2020 - 2021",
     company: "Insupply",
     role: "Founder & CEO/CTO",
     companyDescription:
@@ -75,7 +95,7 @@ export const WorkItems: WorkItemType[] = [
     ],
   },
   {
-    dates: "2018-2020",
+    dates: "2018 - 2020",
     company: "Quillo",
     role: "Founder & CEO/CTO",
     companyDescription: "Online marketplace for 2nd hand university textbooks.",

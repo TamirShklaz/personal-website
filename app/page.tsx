@@ -4,94 +4,96 @@ import Hero from "@/components/hero"
 import About from "@/components/about"
 import WorkList from "@/components/work-list"
 import StickyHeader from "@/components/sticky-header"
-import { createRef, useEffect, useState } from "react"
+import { createRef, useEffect, useRef, useState } from "react"
 import PressList from "@/components/press-list"
 import HomeNav from "@/components/home-nav"
 import Social from "@/components/social"
+import { Button } from "@/components/ui/button"
+import Footer from "@/components/footer"
 
 export default function Home() {
-  const refs = [
+  const sectionRefs = [
     { id: "about", ref: createRef<HTMLDivElement>() },
     { id: "work", ref: createRef<HTMLDivElement>() },
-    { id: "projects", ref: createRef<HTMLDivElement>() },
     { id: "press", ref: createRef<HTMLDivElement>() },
   ]
 
   const [activeSection, setActiveSection] = useState("about")
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
+    const options = {
+      root: null,
+      rootMargin: "-1px 0px 0px 0px",
+      threshold: [0, 0.1, 0.5, 1],
+    }
+
+    observerRef.current = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
           setActiveSection(entry.target.id)
         }
-      },
-      {
-        root: null,
-        rootMargin: "0px 0px -60% 0px",
-        threshold: 0,
-      },
-    )
+      })
+    }, options)
 
-    refs.forEach(refObj => {
-      if (refObj.ref.current) {
-        observer.observe(refObj.ref.current)
+    sectionRefs.forEach(section => {
+      if (section.ref.current) {
+        observerRef.current?.observe(section.ref.current)
       }
     })
 
     return () => {
-      refs.forEach(refObj => {
-        if (refObj.ref.current) {
-          observer.unobserve(refObj.ref.current)
-        }
-      })
+      if (observerRef.current) {
+        observerRef.current.disconnect()
+      }
     }
   }, [])
 
   const onSectionClick = (section: string) => {
-    refs
-      .find(refObj => refObj.id === section)
-      ?.ref.current?.scrollIntoView({
-        behavior: "smooth",
-      })
+    const ref = sectionRefs.find(refObj => refObj.id === section)
+    ref?.ref.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    })
   }
 
   return (
-    <main
-      className={
-        "mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0"
-      }
-    >
-      <div className={"lg:flex lg:justify-between lg:gap-8"}>
-        <div
-          className={
-            "justify-between lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-4/12 lg:flex-col lg:py-24"
-          }
-        >
+    <main className='mx-auto mt-10 min-h-screen max-w-screen-xl px-4 font-sans md:px-12 md:py-20 lg:mt-0 lg:px-24 lg:py-0'>
+      <div className='lg:flex lg:justify-between lg:gap-8'>
+        <div className='justify-between lg:sticky lg:top-20 lg:flex lg:max-h-screen lg:w-4/12 lg:flex-col'>
           <div>
             <Hero />
-
             <HomeNav
-              className={"mt-10"}
+              className='mt-10'
               activeSection={activeSection}
               onSectionClick={onSectionClick}
             />
           </div>
-
-          <Social />
+          <div className={"lg:mb-36"}>
+            <Social className='mt-10' />
+            <Footer className={"mt-4"} />
+          </div>
         </div>
-        <div className={"relative pt-24 lg:w-8/12 lg:py-24"}>
-          <StickyHeader title={"About"} className={"-mt-24"} />
-          <div ref={refs[0].ref} id={"about"} />
-          <About className={"min-h-screen"} />
+        <div className='mb-20 lg:w-7/12'>
+          <div ref={sectionRefs[0].ref} id='about'>
+            <StickyHeader title='About' className='sticky-header' />
+            <About />
+          </div>
 
-          <StickyHeader title={"Work"} />
-          <div ref={refs[1].ref} id={"work"} />
-          <WorkList className={"min-h-screen"} />
+          <div ref={sectionRefs[1].ref} id='work'>
+            <StickyHeader title='Work' className='sticky-header' />
+            <WorkList />
+            <a href='/resume.pdf' target='_blank' rel='noreferrer'>
+              <Button variant='outline' className='mt-4'>
+                View Full Resume
+              </Button>
+            </a>
+          </div>
 
-          <StickyHeader title={"Press"} />
-          <div ref={refs[3].ref} id={"press"} />
-          <PressList className={"min-h-screen"} />
+          <div ref={sectionRefs[2].ref} id='press' className={"mb-80"}>
+            <StickyHeader title='Press' className='sticky-header' />
+            <PressList />
+          </div>
         </div>
       </div>
     </main>

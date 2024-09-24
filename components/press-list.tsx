@@ -8,7 +8,7 @@ type Props = {
 
 function PressList({ className }: Props) {
   return (
-    <div className={cn(className, "flex flex-col gap-4")}>
+    <div className={cn(className, "flex flex-col gap-8 lg:gap-4")}>
       {press.map((item, index) => (
         <div key={index} className={"h-full"}>
           <PressListItem pressData={item} className={"h-full"} />

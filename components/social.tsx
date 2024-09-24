@@ -11,15 +11,34 @@ type Props = { className?: string }
 function Social({ className }: Props) {
   return (
     <div className={cn(className, "flex flex-row items-start space-x-2")}>
-      <Button size={"icon"}>
-        <SiGithub />
-      </Button>
-      <Button size={"icon"}>
-        <SiLinkedin />
-      </Button>
-      <Button size={"icon"}>
-        <SiInstagram />
-      </Button>
+      <a
+        href={"https://github.com/TamirShklaz"}
+        target={"_blank"}
+        rel='noreferrer'
+      >
+        <Button size={"icon"} variant={"outline"}>
+          <SiGithub />
+        </Button>
+      </a>
+      <a
+        target={"_blank"}
+        href={"https://www.linkedin.com/in/tamir-shklaz/"}
+        rel='noreferrer'
+      >
+        <Button size={"icon"} variant={"outline"}>
+          <SiLinkedin />
+        </Button>
+      </a>
+
+      <a
+        target={"_blank"}
+        href={"https://www.instagram.com/tamirshklaz/"}
+        rel='noreferrer'
+      >
+        <Button size={"icon"} variant={"outline"}>
+          <SiInstagram />
+        </Button>
+      </a>
     </div>
   )
 }
