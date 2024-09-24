@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "/og_image-min.png", // Path to your OG image
+        url: "og_image.png",
         width: 1200,
         height: 630,
         alt: "Tamir Shklaz",
