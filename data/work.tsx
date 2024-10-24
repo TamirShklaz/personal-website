@@ -24,7 +24,13 @@ export const WorkItems: WorkItemType[] = [
     role: "Founder",
     activities: [
       "Built websites, apps and back office systems for various startups.",
-      "Helped 10+ startups with product and fundraising strategy.",
+      "Created the technical infrastruture, branding and website for a large North Amercian medical association.",
+    ],
+    links: [
+      {
+        label: "iUSCAN Website",
+        url: "https://www.iUSCAN.org",
+      },
     ],
     tags: [
       { technology: "React", icon: <SiReact /> },
